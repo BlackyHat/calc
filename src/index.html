@@ -1,14 +1,60 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
-  </head>
-  <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
-  </body>
+    <link rel="stylesheet" href="./sass/main.css" />
+    <title>Calc 2022</title>
+</head>
+
+<body>
+
+    <section class="main">
+        <div class="calc-inner">
+            <h2 class="calc__title">Calc-21-10-2022</h2>
+            <input type="text" class="calc-display" placeholder="0" type="number" readonly value="" />
+            <ul class="calc list">
+                <div class="buttons">
+                    <li class="calc__item"><button type="button" class="calc-button action">Null</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button action"
+                            data-value="del">&#8656</button>
+                    </li>
+                    <li class="calc__item"><button type="button" class="calc-button action" data-value="div">/</button>
+                    </li>
+                    <li class="calc__item"><button type="button" class="calc-button action"
+                            data-value="multi">*</button>
+                    </li>
+                    <li class="calc__item"><button type="button" class="calc-button">7</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button">8</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button">9</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button action" data-value="min">-</button>
+                    </li>
+                    <li class="calc__item"><button type="button" class="calc-button">4</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button">5</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button">6</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button action" data-value="sum">+</button>
+                    </li>
+                    <li class="calc__item"><button type="button" class="calc-button">1</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button">2</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button">3</button></li>
+                    <li class="calc__item result"><button type="button" class="calc-button action"
+                            data-value="res">=</button></li>
+                    <li class="calc__item null"><button type="button" class="calc-button ">0</button></li>
+
+                </div>
+            </ul>
+        </div>
+        <div class="results-section"></div>
+        <div class="history-section"></div>
+
+    </section>
+
+
+    <script src="./js/calc.js"></script>
+
+
+</body>
+
 </html>
