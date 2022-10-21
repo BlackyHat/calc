@@ -5,15 +5,13 @@ const refs = {
   history: document.querySelector('.history-section'),
 };
 
-console.log(refs.history);
-
 const dataFromDisplay = {
   dataValue: [],
   operationsType: [],
 };
+
 let counterOperations = 0;
 let res = 0;
-let lastActionButton = '';
 
 refs.calc.addEventListener('click', onBtnClick);
 
@@ -30,65 +28,89 @@ function onBtnClick(e) {
     // check for push Del button
     isDelBtn(e);
 
-    if (e.target.dataset.value === 'sum') {
-      const { dataValue, operationsType } = dataFromDisplay;
-      dataValue.push(Number(refs.input.value));
-      operationsType.push('+');
-      refs.input.value = ' ';
-    }
-    if (e.target.dataset.value === 'min') {
-      const { dataValue, operationsType } = dataFromDisplay;
-      dataValue.push(Number(refs.input.value));
-      operationsType.push('-');
-      refs.input.value = ' ';
-    }
-    if (e.target.dataset.value === 'multi') {
-      const { dataValue, operationsType } = dataFromDisplay;
-      dataValue.push(Number(refs.input.value));
-      operationsType.push('*');
-      refs.input.value = ' ';
-    }
-    if (e.target.dataset.value === 'div') {
-      const { dataValue, operationsType } = dataFromDisplay;
-      dataValue.push(Number(refs.input.value));
-      operationsType.push('/');
-      refs.input.value = ' ';
-    }
+    sum(e);
+    min(e);
+    multi(e);
+    div(e);
+    result(e);
+    isActionBtn(e);
+  }
+}
 
-    if (e.target.dataset.value === 'res') {
-      let { dataValue, operationsType } = dataFromDisplay;
-      dataValue.push(Number(refs.input.value));
+function result(e) {
+  if (e.target.dataset.value === 'res') {
+    let { dataValue, operationsType } = dataFromDisplay;
+    dataValue.push(Number(refs.input.value));
 
-      for (let i = 0; i < operationsType.length; i += 1) {
-        let res = dataValue[0];
-        let operation = operationsType[i];
-        let b = dataValue[i + 1];
+    for (let i = 0; i < operationsType.length; i += 1) {
+      res = dataValue[0];
+      let operation = operationsType[i];
+      let b = dataValue[i + 1];
 
-        doMath(res, operation, b);
-        console.log(res);
-      }
-      //=====================================
-      const history = [];
-      for (let i = 0; i < dataValue.length; i += 1) {
-        history.push(dataValue[i]);
-        history.push(operationsType[i]);
-      }
-      history.pop();
-      const historyEl = history.join('');
-      //================================
-
-      createResMarkup(res);
-      createHistoryMarkup(historyEl);
-      refs.input.value = res;
-      counterOperations = 0;
-      for (key in dataFromDisplay) {
-        dataFromDisplay[key] = [];
-      }
+      doMath(res, operation, b);
     }
-
-    if (e.target.classList.contains('action')) {
-      counterOperations += 1;
+    //=====================================
+    const history = [];
+    for (let i = 0; i < dataValue.length; i += 1) {
+      history.push(dataValue[i]);
+      history.push(operationsType[i]);
     }
+    history.pop();
+    const historyEl = history.join('');
+    //================================
+
+    createResMarkup(res);
+    createHistoryMarkup(historyEl);
+    refs.input.value = res;
+    counterOperations = 0;
+    clearDataFromDisplay(dataFromDisplay);
+  }
+}
+
+function sum(e) {
+  if (e.target.dataset.value === 'sum') {
+    const { dataValue, operationsType } = dataFromDisplay;
+    dataValue.push(Number(refs.input.value));
+    operationsType.push('+');
+    refs.input.value = ' ';
+  }
+}
+
+function min(e) {
+  if (e.target.dataset.value === 'min') {
+    const { dataValue, operationsType } = dataFromDisplay;
+    dataValue.push(Number(refs.input.value));
+    operationsType.push('-');
+    refs.input.value = ' ';
+  }
+}
+function multi(e) {
+  if (e.target.dataset.value === 'multi') {
+    const { dataValue, operationsType } = dataFromDisplay;
+    dataValue.push(Number(refs.input.value));
+    operationsType.push('*');
+    refs.input.value = ' ';
+  }
+}
+
+function div(e) {
+  if (e.target.dataset.value === 'div') {
+    const { dataValue, operationsType } = dataFromDisplay;
+    dataValue.push(Number(refs.input.value));
+    operationsType.push('/');
+    refs.input.value = ' ';
+  }
+}
+
+function clearDataFromDisplay(obj) {
+  for (key in obj) {
+    obj[key] = [];
+  }
+}
+
+function isActionBtn(e) {
+  if (e.target.classList.contains('action')) {
+    counterOperations += 1;
   }
 }
 
@@ -109,13 +131,11 @@ function isPushNullBtn(e) {
   if (e.target.textContent === 'Null') {
     refs.input.value = '';
     counterOperations = 0;
-    let res = 0;
+    res = 0;
 
     for (key in dataFromDisplay) {
       dataFromDisplay[key] = [];
     }
-
-    console.log(dataFromDisplay);
   }
 }
 
