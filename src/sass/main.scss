@@ -44,7 +44,7 @@ Remove the margin in all browsers.
 */
 
 body {
-  margin: 0;
+  margin: 0 auto;
 }
 
 /**
@@ -333,41 +333,58 @@ img {
 
 /* ================================== */
 
-.main {
+.main-container {
   position: relative;
-  top: 10%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 32px;
 }
 
 .calc-inner {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: block;
-  width: calc(100% / 3 - 2 * 16px);
-  min-width: 380px;
+  min-width: 320px;
   max-width: 600px;
-
-  margin-right: 16px;
-  margin-left: 16px;
+  margin: 0 auto;
 }
 
 .calc-display {
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
-
-  /* margin-left: auto;
-  margin-right: auto; */
-
-  /* display: block; */
   margin-bottom: 16px;
   height: 200px;
   box-shadow: -4px 9px 50px 7px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
-  font-size: 36px;
+  font-size: 38px;
   border: none;
   text-align: right;
-  padding: 24px;
+  padding: 28px 32px;
+  background: linear-gradient(rgb(220, 220, 220), transparent 2px),
+    linear-gradient(90deg, rgb(220, 220, 220), transparent 2px);
+  background-size: 20px 20px;
 }
 
+.result-string,
+.history-string {
+  align-self: flex-start;
+
+  width: 100%;
+  font-style: italic;
+  font-size: 20px;
+  color: grey;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+.result-string {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.entered-data-string {
+  align-self: flex-end;
+  width: 100%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 .calc-button {
   box-shadow: 7px 8px 4px -1px #e1e8df;
   background: linear-gradient(to bottom, #439959 5%, #5cbf2a 100%);
@@ -386,11 +403,13 @@ img {
   height: 100%;
 }
 
-.calc-button.action {
+.calc-button.action,
+.calc-button.null-button {
   background: linear-gradient(to bottom, #34553c 5%, #58903c 100%);
   border: 1px solid #417046;
 }
-.calc-button.action:hover {
+.calc-button.action:hover,
+.calc-button.null-button:hover {
   background: linear-gradient(to bottom, #243228 5%, #3a542d 100%);
   border: 1px solid #324b35;
 }
@@ -410,18 +429,10 @@ img {
   text-transform: uppercase;
   text-align: center;
   padding: 16px;
-  margin-top: -60px;
 }
 
 .calc {
-  /* position: absolute; */
-  /* top: 20%; */
-  /* left: 50%;
-  transform: translateX(-50%); */
   width: 100%;
-
-  /* margin-left: auto;
-  margin-right: auto; */
   height: 450px;
 }
 
@@ -430,8 +441,6 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-  /* flex-shrink: 1;
-  flex-basis: 1; */
   gap: 8px;
   flex-basis: 30%;
   width: 100%;
@@ -445,8 +454,15 @@ img {
   bottom: -100px;
   left: 0;
   width: 75%;
+
   align-self: flex-start;
 }
+
+.null-button {
+  padding: 2px;
+  font-size: 24px;
+}
+
 .result {
   height: 50%;
   position: absolute;

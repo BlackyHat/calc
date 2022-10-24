@@ -11,13 +11,19 @@
 
 <body>
 
-    <section class="main">
+    <section class="main-container">
         <div class="calc-inner">
-            <h2 class="calc__title">Calc-21-10-2022</h2>
-            <input type="text" class="calc-display" placeholder="0" type="number" readonly value="" />
+            <h2 class="calc__title">Calc-22-10-2022</h2>
+            <div class="calc-display">
+                <p class="history-string"></p>
+                <p class="result-string"></p>
+                <p class="entered-data-string">0</p>
+            </div>
+            <!-- <input type="text" class="calc-display" placeholder="0" type="number" readonly value="" /> -->
             <ul class="calc list">
                 <div class="buttons">
-                    <li class="calc__item"><button type="button" class="calc-button action">Null</button></li>
+                    <li class="calc__item"><button type="button" class="calc-button null-button">Null</button>
+                    </li>
                     <li class="calc__item"><button type="button" class="calc-button action"
                             data-value="del">&#8656</button>
                     </li>
@@ -46,8 +52,8 @@
                 </div>
             </ul>
         </div>
-        <div class="results-section"></div>
-        <div class="history-section"></div>
+        <!-- <div class="results-section"></div>
+        <div class="history-section"></div> -->
 
     </section>
 
